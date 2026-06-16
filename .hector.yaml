@@ -134,11 +134,7 @@ tests:
           ${output}=    Wait For Line On Uart    Button pressed at    timeout=5
           Should Match Regexp       ${output}[Line]    Button pressed at \\d+
 
-# CI pipeline — when/how the CI server runs this config.
-ci:
-  mcu-tests:
-    when:
-      branch: [main]
-      event: [push, pull_request]
-    reporters: [json]
-    timeout: 10m
+when:
+  branch: [main, "release/*"]
+  event: [push, pull_request, manual]
+  path: ["cli/**"]
