@@ -7,6 +7,10 @@ renode_version: "1.16.1"
 arguments:
   BIN: "https://dl.antmicro.com/projects/renode/zephyr-stm32f103-button.elf-s_276760-1bf32c99bbb3c01d81e13ca68118eaf08b2a815f"
 
+matrix:
+  variables:
+    NUM: [1, 2]
+
 machines:
   mcu:
     firmware: ${BIN}
@@ -133,6 +137,13 @@ tests:
 
           ${output}=    Wait For Line On Uart    Button pressed at    timeout=5
           Should Match Regexp       ${output}[Line]    Button pressed at \\d+
+
+  - name: bashing
+    type: bash
+    steps:
+      - name: Echo test
+        script: |
+          echo "hi from matrix job NUM=${NUM}"
 
 when:
   branch: [main, "release/*"]
