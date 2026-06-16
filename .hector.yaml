@@ -137,4 +137,4 @@ tests:
 when:
   branch: [main, "release/*"]
   event: [push, pull_request, manual]
-  path: ["cli/**"]
+  path: ["cli/**", "*"]
