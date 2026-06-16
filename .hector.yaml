@@ -10,6 +10,7 @@ arguments:
 matrix:
   variables:
     NUM: [1, 2]
+    NUMY: [1, 2]
 
 machines:
   mcu:
@@ -143,7 +144,7 @@ tests:
     steps:
       - name: Echo test
         script: |
-          echo "hi from matrix job NUM=${NUM}"
+          echo "hi from matrix job NUM=${NUM} NUMY=${NUMY}"
 
 when:
   branch: [main, "release/*"]
